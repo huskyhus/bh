@@ -17,6 +17,8 @@ export default function Page() {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0b1020);
+
     const camera = new THREE.PerspectiveCamera(
       90,
       window.innerWidth / window.innerHeight,
@@ -50,10 +52,10 @@ export default function Page() {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 0.03,
+      size: 0.07,
       color: 0xffffff,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.9,
       depthWrite: false,
     });
 

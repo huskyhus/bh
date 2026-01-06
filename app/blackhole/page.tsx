@@ -6,7 +6,6 @@ import * as THREE from "three";
 const COUNT = 1000;
 const ATTRACTOR_STRENGTH = 0.01;
 const DAMPING = 0.999999;
-const SPIN = 0.0;
 
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -15,6 +14,8 @@ export default function Home() {
     if (!mountRef.current) return;
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0b1020);
+
     const camera = new THREE.PerspectiveCamera(
       90,
       window.innerWidth / window.innerHeight,
@@ -67,10 +68,10 @@ export default function Home() {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 0.03,
+      size: 0.04,
       color: 0xffffff,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.9,
       depthWrite: false,
     });
     const points = new THREE.Points(geometry, material);
@@ -133,5 +134,14 @@ export default function Home() {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "100vw", height: "100vh" }} />;
+  return (
+    <div
+      ref={mountRef}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: -1,
+      }}
+    />
+  );
 }
